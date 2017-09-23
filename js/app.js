@@ -56,36 +56,43 @@ var filmList = document.getElementById("filmList");
 var filmsReq = new XMLHttpRequest();
 function reqListener() {
   var films = JSON.parse(this.responseText);
-  console.log(films.results);
+  // console.log(films.results);
 
-for (var i = 0; i < films.results.length; i++) {
-  var ListOfFilms = document.createElement("li");
-  var filmTitle = document.createElement("h2");
-  filmTitle.innerHTML = films.results[i].title;
-  ListOfFilms.appendChild(filmTitle);
-  filmList.appendChild(ListOfFilms);
+  for (var i = 0; i < films.results.length; i++) {
+    var ListOfFilms = document.createElement("li");
+    var filmTitle = document.createElement("h2");
+    filmTitle.innerHTML = films.results[i].title;
+    ListOfFilms.appendChild(filmTitle);
+    filmList.appendChild(ListOfFilms);
 
-  ///////Planet Header H3///////
-    var planetHeader = document.createElement("h3");
+  ///////PlanetS Header H3///////
+  var planetHeader = document.createElement("h3");
   planetHeader.innerHTML = "Planets";
   ListOfFilms.appendChild(planetHeader);
-
-
-}
-}
-filmsReq.addEventListener("load", reqListener);
-filmsReq.open("GET", "http://swapi.co/api/films/");
-filmsReq.send();
-}());
+  ///'ul' element 'filmPlanets' under h3
+  var planetUL = document.createElement("ul");
+  planetUL.className = "filmPlanets";
+  ListOfFilms.appendChild(planetUL);
 
 
 
-///////PLANETS////////////
+  for (var j = 0; j < films.results.length; j++) {
+    var filmPlanets = document.createElement("li");
+    filmPlanets.className = "planet";
+    // filmPlanets.innerHTML = film.results[j].planets;
 
+    var planetName = document.createElement("h4");//<<<---
+    // planetName.innerHTML = film.results[j].planets;
+    planetUL.appendChild(filmPlanets);
+    filmPlanets.appendChild(planetName);
+  }
+
+    }
+  }
+  ///////PLANETS////////////
 // var PlanetReq = new XMLHttpRequest();
-// function reqListener4b() {
+// function reqListener2() {
 //   var data = JSON.parse(this, responseText);
-
 
 //   var ulPlanetCl = document.createElement("ul");
 //   ulPlanetCl.className = "filmPlanets";
@@ -95,25 +102,13 @@ filmsReq.send();
 //   liPlanet.innerHTML = data.name;
 // }
 
-// PlanetReq.addEventListener("load", reqListener4b);
+
+// PlanetReq.addEventListener("load", reqListener2);
 // PlanetReq.open("GET", "http://swapi.co/api/planets/2/");
 // PlanetReq.send();
 
 
-/////FILM 2 OF 4//////
-// var oReq5 = new XMLHttpRequest();
-// function reqListener5() {
-//   var data = JSON.parse(this.responseText);
-
-//   var films = document.getElementById("films");
-//   var newFilm = document.createElement("li");
-//   newFilm.className = "film";
-//   newFilm.innerHTML = data.title;
-//   films.appendChild(newFilm);
-
-// }
-
-
-// oReq5.addEventListener("load", reqListener5);
-// oReq5.open("GET", "http://swapi.co/api/films/6/");
-// oReq5.send();
+filmsReq.addEventListener("load", reqListener);
+filmsReq.open("GET", "http://swapi.co/api/films/");
+filmsReq.send();
+}());
