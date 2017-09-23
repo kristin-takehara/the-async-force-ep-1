@@ -37,7 +37,8 @@ var speciesReq = new XMLHttpRequest();
   function reqListener2(){
   var speciesObj = JSON.parse(this.responseText);
   document.getElementById("person14Species").innerHTML = speciesObj.name;
-  }//second http request
+  }
+  //second http request
   speciesReq.addEventListener("load", reqListener2);
   speciesReq.open('GET', personObj.species);
   speciesReq.send();
@@ -46,11 +47,11 @@ var speciesReq = new XMLHttpRequest();
 oReq.addEventListener("load", reqListener);
 oReq.open("GET", "http://swapi.co/api/people/14/");
 oReq.send();
+
 }());
-
 ////////////FILM LIST//////////////
-
-/////FILM 1 OF 4//////
+(function() {
+var filmList = document.getElementById("filmList");
 
 var filmsReq = new XMLHttpRequest();
 function reqListener() {
@@ -58,50 +59,28 @@ function reqListener() {
   console.log(films.results);
 
 for (var i = 0; i < films.results.length; i++) {
-  var filmList = document.createElement("li");
+  var ListOfFilms = document.createElement("li");
   var filmTitle = document.createElement("h2");
   filmTitle.innerHTML = films.results[i].title;
-  filmsList.appendChild(filmTitle);
-  films.appendChild(filmsList);
-}
+  ListOfFilms.appendChild(filmTitle);
+  filmList.appendChild(ListOfFilms);
 
-filmsReq.addEventListener("load", reqListener4a);
-filmsReq.open("GET", "http://swapi.co/api/films/2/");
+  ///////Planet Header H3///////
+    var planetHeader = document.createElement("h3");
+  planetHeader.innerHTML = "Planets";
+  ListOfFilms.appendChild(planetHeader);
+
+
+}
+}
+filmsReq.addEventListener("load", reqListener);
+filmsReq.open("GET", "http://swapi.co/api/films/");
 filmsReq.send();
-}
-
-
-// <li class="film">
-//             <h2 class="filmTitle"></h2>
-//             <h3>Planets</h3>
-//             <ul class="filmPlanets">
-//               <li class="planet">
-//                 <h4 class="planetName"></h4>
-//               </li>
-//             </ul>
-//           </li>
+}());
 
 
 
-//   var filmList = document.getElementById("filmList");
-//   var newFilm = document.createElement("li");
-//   newFilm.className = "film";
-//   filmList.appendChild(newFilm);
-
-//   var newFilmTitle = document.createElement("h2");
-//   newFilmTitle.innerHTML = data.title;
-//   newFilm.appendChild(newFilmTitle);
-
-//   // var getFilm = document.getElementsByClassName("h2");
-// var planet = document.createElement("h3");
-//   planet.innerHTML = "Planets";
-//   newFilm.appendChild(planet);
-// }
-
-
-
-
-///////PLANET 1 OF 4////////////
+///////PLANETS////////////
 
 // var PlanetReq = new XMLHttpRequest();
 // function reqListener4b() {
