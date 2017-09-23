@@ -74,21 +74,31 @@ function reqListener() {
   planetUL.className = "filmPlanets";
   ListOfFilms.appendChild(planetUL);
 
+  //<<<-HOLD
 
 
+    }
+  }
+
+
+  var planetNameReq = new XMLHttpRequest();
+  (function reqListener2(){
+    var planets = JSON.parse(this.responseText);
   for (var j = 0; j < films.results.length; j++) {
     var filmPlanets = document.createElement("li");
     filmPlanets.className = "planet";
     // filmPlanets.innerHTML = film.results[j].planets;
 
     var planetName = document.createElement("h4");//<<<---
-    // planetName.innerHTML = film.results[j].planets;
+    planetName.innerHTML = planets.results[j].name;
     planetUL.appendChild(filmPlanets);
     filmPlanets.appendChild(planetName);
-  }
-
     }
-  }
+    planetNameReq.addEventListener("load", reqListener2);
+    planetNameReq.open('GET', planets.name);
+    planetNameReq.send();
+
+  }());
   ///////PLANETS////////////
 // var PlanetReq = new XMLHttpRequest();
 // function reqListener2() {
