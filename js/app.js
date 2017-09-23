@@ -58,10 +58,10 @@ function reqListener() {
   var films = JSON.parse(this.responseText);
   // console.log(films.results);
 
-  for (var i = 0; i < films.results.length; i++) {
+  for (var i = 0; i < films.results.length; i++) { //iterate over the film list from http://swapi.co/api/films/
     var ListOfFilms = document.createElement("li");
     var filmTitle = document.createElement("h2");
-    filmTitle.innerHTML = films.results[i].title;
+    filmTitle.innerHTML = films.results[i].title; //fill each h2 with each index from http://swapi.co/api/films/ "results" key:tile
     ListOfFilms.appendChild(filmTitle);
     filmList.appendChild(ListOfFilms);
 
@@ -73,15 +73,10 @@ function reqListener() {
   var planetUL = document.createElement("ul");
   planetUL.className = "filmPlanets";
   ListOfFilms.appendChild(planetUL);
+}
+  //<<<-HOLD---PLANETS IN THE WORKS :(
 
-  //<<<-HOLD
-
-
-    }
-  }
-
-
-  var planetNameReq = new XMLHttpRequest();
+var planetNameReq = new XMLHttpRequest();
   (function reqListener2(){
     var planets = JSON.parse(this.responseText);
   for (var j = 0; j < films.results.length; j++) {
@@ -97,8 +92,13 @@ function reqListener() {
     planetNameReq.addEventListener("load", reqListener2);
     planetNameReq.open('GET', planets.name);
     planetNameReq.send();
-
   }());
+
+
+  }
+
+
+
   ///////PLANETS////////////
 // var PlanetReq = new XMLHttpRequest();
 // function reqListener2() {
